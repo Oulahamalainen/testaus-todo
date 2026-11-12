@@ -7,7 +7,7 @@ A minimal full-stack JavaScript Todo application intended for learning unit test
 - **Backend**: Node.js (Express) serving static files and simple health/version endpoints
 - **Frontend**: Vanilla JavaScript, HTML, CSS (no framework)
 - **Storage**: `localStorage` in the browser (`todo_tasks_v1`)
-- **Dev tooling**: None required initially (tests will be added in a later phase: this is the exercise)
+- **Dev tooling**: Vitest for unit tests and Cypress for end-to-end tests
 
 ### Features
 
@@ -45,7 +45,9 @@ A minimal full-stack JavaScript Todo application intended for learning unit test
 │  └─ app.js         # DOM wiring: event listeners, rendering
 ├─ tests/            # Vitest unit tests
 ├─ server.js         # Express static server + health/version
+├─ cypress/          # Cypress end-to-end tests
 ├─ vitest.config.js
+├─ cypress.config.js
 ├─ package.json
 └─ README.md
 ```
@@ -60,4 +62,7 @@ A minimal full-stack JavaScript Todo application intended for learning unit test
   `public/app.js` only wires the DOM to `taskStore.js` and is intentionally left out of
   unit test scope.
 - Run tests with `npm test` (single run) or `npm run test:watch` (watch mode).
-- E2E tests (Cypress): target user flows—create, update, complete/undo, delete; use `/health` to check server readiness.
+- E2E tests (Cypress): target user flows—create, update, complete/undo, delete. Start the server with
+  `npm start` in one terminal and run `npm run test:e2e` in another terminal.
+- Run both test suites with `npm run test:ci`. The same unit and E2E suites run automatically on
+  pushes and pull requests through the GitHub Actions workflow in `.github/workflows/tests.yml`.
